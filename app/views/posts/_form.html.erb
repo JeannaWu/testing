@@ -6,6 +6,8 @@
   		<%= f.text_field :title, placeholder: "Title here" %>
   		<%= f.label :content %>
    	 	<%= f.text_area :content, placeholder: "Content here" %>
+   	 	<%= f.label :image %>
+   	 	<%= f.file_field :image, placeholder: "Image here" %>
    	 	
  	 </div>
    <%= f.submit "Post" %>
