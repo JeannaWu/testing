@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get 'static_pages/help'
 
- resources :posts
+ resources :posts do
+ 	resources :comments
+ end
   root 'posts#index'
 end

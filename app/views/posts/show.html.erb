@@ -4,6 +4,16 @@
 <p><%= @post.content%></p>
 <p><%= @post.user.name%></p>
 
+<p>Reply to the post</p>
+<h2><%= pluralize(@post.comments.count,"Comment")%></h2>
+ <% @comments.each do |comment| %>
+     <%= comment.user.name%><br>
+     <%= comment.content%><br>
+ <% end -%>
+ <%= form_for [@post,@post.comments.build] do |f| %>  
+  <p><%= f.text_area :content %> </p>  
+  <p><%= f.submit "Post Comment" %> </p>  
+<% end %>  
 
 <%= link_to "Home", root_path%>
 <%= link_to "Edit", edit_post_path(@post)%>
