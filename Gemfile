@@ -31,8 +31,8 @@ source 'https://rubygems.org'
     gem 'bootstrap-will_paginate', '0.0.10'
     gem 'time_ago_in_words', '~> 0.1.1'
     
-    
-     gem 'aws-sdk', '< 2.0'
+    gem 'jquery-rails', '~> 4.1'
+     
      gem 'paperclip', '~> 4.3', '>= 4.3.5'
      gem 'devise', '~> 3.5', '>= 3.5.6'
 
