@@ -3,6 +3,13 @@
 <h1><%= @post.title%></h1>
 <p><%= @post.content%></p>
 <p><%= @post.user.name%></p>
+<p><%=@post.get_upvotes.size%>Likes
+</p>
+<p><%=@post.get_downvotes.size%>Dislikes</p>
+
+<%= link_to "Like", like_post_path(@post), method: :get%>
+
+<%= link_to "Dislike", dislike_post_path(@post), method: :get%>
 
 <p>Reply to the post</p>
 <h2><%= pluralize(@post.comments.count,"Comment")%></h2>
