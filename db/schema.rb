@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222103112) do
+ActiveRecord::Schema.define(version: 20160222142704) do
 
   create_table "clubs", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -32,10 +32,11 @@ ActiveRecord::Schema.define(version: 20160222103112) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "follows", force: :cascade do |t|
-    t.integer  "followable_id",   limit: 4,   null: false
-    t.string   "followable_type", limit: 255, null: false
-    t.integer  "follower_id",     limit: 4,   null: false
-    t.string   "follower_type",   limit: 255, null: false
+    t.integer  "followable_id",   limit: 4,                   null: false
+    t.string   "followable_type", limit: 255,                 null: false
+    t.integer  "follower_id",     limit: 4,                   null: false
+    t.string   "follower_type",   limit: 255,                 null: false
+    t.boolean  "blocked",         limit: 1,   default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

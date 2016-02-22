@@ -2,12 +2,16 @@ class UsersController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
 	def show
 		@user = User.where(:name => params[:name]).first
+    
         
-     @posts = @user.posts.paginate(page: params[:page], per_page: 20)
+    # @posts = @user.posts.paginate(page: params[:page], per_page: 20)
 
         
 	end
-
+  def new
+     @user = User.new
+     
+  end
 
 	 def posts
     @user = User.where(:name => params[:name]).first
@@ -40,6 +44,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def follow
+    @user = User.find(params[:id])
+    current_user.follow(@user)
+    respond_to do |format|
+      format.js {render :action=>"follow"}
+  end
+end
+
+  def unfollow
+    @user = User.find(params[:id])
+    current_user.stop_following(@user)
+    respond_to do |format|
+      format.js {render :action=>"unfollow"}
+  end
+end
+
+  
 
 	private
 	def user_params
