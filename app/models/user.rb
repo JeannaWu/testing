@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-
+  has_and_belongs_to_many :club
   has_many :posts
   has_many :comments
   validates :name, presence: true, length: { in: 4..30 }

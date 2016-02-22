@@ -1,0 +1,29 @@
+ <!DOCTYPE html>
+<html>
+
+<style type="text/css">
+div#user_info {background-color:#FFFFFF;height:150px; float: left;}
+</style>
+</head>
+<body>
+  <% provide(:title, @user.name) %>
+  <div class="row">
+    <aside class="col-md-4">
+     <div id="user_info">
+         <h1>
+            <%= image_tag @user.avatar.url(:thumb) %>
+           <p><%= current_user.name%></p>
+           <%= link_to "Settings",edit_user_registration_path, class: "button" %>
+          </h1>
+
+          
+  </div>
+</aside>
+<aside class="col-md-8">
+  
+  <%= current_user.name%>
+  
+</aside>
+</div>
+</body>
+</html>
