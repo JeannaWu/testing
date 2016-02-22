@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 	def show
 		@user = User.where(:name => params[:name]).first
         
-        @posts = @user.posts.paginate(page: params[:page], per_page: 20)
+     @posts = @user.posts.paginate(page: params[:page], per_page: 20)
 
         
 	end
