@@ -12,6 +12,9 @@ class UsersController < ApplicationController
      @user = User.new
      
   end
+  def create
+  @user = User.create( user_params )
+  end
 
 	 def posts
     @user = User.where(:name => params[:name]).first
