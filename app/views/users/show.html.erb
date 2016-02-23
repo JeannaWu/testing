@@ -3,34 +3,37 @@
 
 <style type="text/css">
 div#user_info {background-color:#FFFFFF;height:150px; float: left;}
+.button {padding-top: 0.3rem;
+    padding-right: 1rem;
+    padding-bottom: 0.3rem;
+    padding-left: 1rem;}
+
 </style>
 </head>
 <body>
  
-  <div class="row">
-    <aside class="col-md-4">
-     <div id="user_info">
-         <h1>
-           
-           
-              <%= link_to "Settings",edit_user_registration_path, class: "button" %>
-              
-
-
-              <div>
-             <% if user_signed_in? %>
-                <div id="follow_user<%=@user.id%>">
+  <div id="row">
+    
+            <aside class="col-md-4">
+                <section class="user_info">
+                   <%= image_tag current_user.avatar.url(:thumb) %>
+                   <h1><font size="3"><%= current_user.name %></font></h1>
+                   <span> <%= link_to "Settings",edit_user_registration_path, class: "button" %></span>
+      
+                <span><b>Posts:</b> <%= @user.posts.count %></span>
+                </section>
+                <section class="stats">
+                <%= render 'shared/stats' %> 
+                <div class="user_avatars">
+                 <% if user_signed_in? %>
+                <div id="follow_user <%=@user.id%> ">
                 <%= render :partial => "follow_user", :locals => {:user => @user} %>
-            </div>
-          <% end %>
            
-              
-              
-
-          </h1>
+                <% end %>
+            </div>
           
-  </div>
-</aside>
+          </section>
+     </aside>  
 <aside class="col-md-8">
   <!--显示当前用户的帖子-->
 </aside>

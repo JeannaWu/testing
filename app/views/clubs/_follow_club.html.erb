@@ -1,0 +1,14 @@
+<% unless @user == current_user %>
+  <% if current_user.following?(club) %>
+    <%= link_to(unfollow_club_path(club), :remote => true, :class => 'btn btn-primary') do %>
+   <i class="icon-remove icon-white"></i>
+   Exit
+ <% end %>
+  <% else %>
+
+    <%= link_to(follow_club_path(club) ,:remote => true, :class => 'btn btn-primary') do %>
+    <i class="icon-ok icon-white"></i>
+    Join
+    <%end%>
+  <% end %>
+  <% end %>

@@ -13,4 +13,28 @@ class ClubsController < ApplicationController
   def new
     @club = Club.new
   end
+      def joining
+          @title = "Joining"
+          @user  = User.find(params[:id])
+          @clubs = @user.follow_count.paginate(page: params[:page])
+         render 'show_join'
+        end
+
+
+         def follow
+  @club = Club.find(params[:id])
+    current_user.follow(@club)
+     respond_to do |format|
+      format.html { redirect_to @club }
+      format.js
+end
+end
+   def unfollow
+   @club = Club.find(params[:id])
+    current_user.stop_following(@club)
+     respond_to do |format|
+      format.html { redirect_to @club }
+      format.js
+end
+end
 end

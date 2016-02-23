@@ -3,6 +3,8 @@
 <p><%= @post.user.name%></p>
 <%= time_tag @post.created_at %> 
 <div id = "clearfix">
+
+
 	<div id = "post_image">
 		<%= image_tag @post.image.url(:medium)%>
 		<div id = "content">
@@ -24,7 +26,25 @@
 <%= link_to "Destroy", post_path(@post), method: :delete, data: {confirm: "Are you sure to delete the post?"}%>
 <%- end %>
 </div>
+<div id = "random-post">
+	<h3> Random Posts</h3>
+	<div id = "post">
+		<div id = "post_image">
+			<%=link_to (image_tag @random_post.image.url(:small)), post_path(@random_post)%>
+			
 
+		</div>
+		<div id = "post_content">
+			<div id = "title">
+				<h2><%= link_to @random_post.title, post_path(@random_post)%><h2>
+			</div>
+			<div id="data.clearfix">
+				<p>Posted by <%= @random_post.user.name%></p>
+				<<p><%= @random_post.comments.count%> Comments  <br><%= @random_post.get_likes.size%>Likes</p>
+				<div>
+		</div>
+	</div>
+</div>
 <p>Reply to the post</p>
 
  <% @comments.each do |comment| %>

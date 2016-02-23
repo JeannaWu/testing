@@ -1,21 +1,22 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, :only => [:show] do
+  resources :users do
     member do
-      get :follows
-      get :unfollows
-      post :follows
-      post :unfollows
-      get :block
-      get :followers
-      get :following
-      get :posts
-    end
-  end
+    get :follow
+    get :unfollow
+    get :following, :followers
+    get :joining
+end
+end
 
 
 
   resources :clubs do
+    member do
+    get :follow
+    get :unfollow
+
+end
   end
   
 
@@ -32,6 +33,6 @@ Rails.application.routes.draw do
   root 'posts#index'
   get 'static_pages/home'
   get 'static_pages/help'
-  resources :follows,       only: [:create, :destroy]
+  resources :follows
   
 end

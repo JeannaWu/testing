@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
 	def show
-		@user = User.where(:name => params[:name]).first
     
-        
+		@user = User.where(:name => params[:name]).first
+    @user = User.find(params[:id])
+      
     # @posts = @user.posts.paginate(page: params[:page], per_page: 20)
-
-        
+       
 	end
   def new
      @user = User.new
@@ -48,17 +48,43 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     current_user.follow(@user)
     respond_to do |format|
-      format.js {render :action=>"follow"}
-  end
+      format.html { redirect_to @user }
+      format.js
+    end
 end
 
-  def unfollow
+
+   def unfollow
     @user = User.find(params[:id])
     current_user.stop_following(@user)
-    respond_to do |format|
-      format.js {render :action=>"unfollow"}
-  end
+   respond_to do |format|
+      format.html { redirect_to @user }
+      format.js
+    end
+       
 end
+
+
+    def following
+          @title = "Following"
+          @user  = User.find(params[:id])
+          @users = @user.follows_by_type(@user).paginate(page: params[:page], per_page: 20)
+         render 'show_follow'
+        end
+
+        def joining
+          @title = "Joining"
+          @user  = User.find(params[:id])
+          @clubs = @user.ffollowing_by_type(@club).paginate(page: params[:page])
+         render 'show_join'
+        end
+
+      def followers
+          @title = "Followers"
+          @user  = User.find(params[:id])
+          @users = @user.followers.paginate(page: params[:page], per_page: 20)
+          render 'show_follow'
+       end
 
   
 

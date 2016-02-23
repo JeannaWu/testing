@@ -1,8 +1,8 @@
 <% provide(:title, @club.name) %>
-<%= @club.name %>
-<% if current_user.following?(club) %>
-    <%= button_to("Un-Follow #{club.id}", club_follow_path(club.to_param, current_user.get_follow(club).id), :method => :delete, :remote => true) %>
-<% else %>
-    <%= button_to("Follow #{club.id}", club_follows_path(club.to_param), :remote => true) %>
-<% end %>
- 
+      <%= @club.name %>
+
+             <% if user_signed_in? %>
+                <div id="follow_club <%=@club.id%> ">
+                <%= render :partial => "follow_club", :locals => {:club => @club} %>
+            </div>
+          <% end %>

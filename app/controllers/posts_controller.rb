@@ -7,6 +7,7 @@
 
 	def show
 		@comments = Comment.where(post_id: @post)
+		@random_post = Post.where.not(id: @post).order("RAND()").first
 	end
 
 	def new
@@ -54,6 +55,6 @@
 	end
 
 	def post_params
-		params.require(:post).permit(:title, :content,:image)
+		params.require(:post).permit(:title, :content, :image)
 	end
 end
