@@ -2,10 +2,23 @@
 	before_action :find_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 	before_action :authenticate_user!, except: [:index, :show]
 	def index
-		@posts = Post.all.order("Created_at desc")
+		
+			@posts = Post.where(["title LIKE ?","%#{params[:search]}%"])
+		   
+		
+		if params[:club].blank?
+		    @posts = Post.paginate(page: params[:page], per_page: 30).order("Created_at desc")
+		else
+			club_id = Club.find_by(name: params[:club]).id
+			@posts = Post.where(club_id: @club_id).order("created_at DESC")
+		end
+
 	end
 
 	def show
+		@post = Post.find(params[:id])
+		@user = @post.user
+		@club = @post.club
 		@comments = Comment.where(post_id: @post)
 		@random_post = Post.where.not(id: @post).order("RAND()").first
 	end
@@ -16,7 +29,7 @@
 
 	def create
 		@post = current_user.posts.build(post_params)
-
+		
 		if @post.save
 			redirect_to @post
 		else
@@ -55,6 +68,6 @@
 	end
 
 	def post_params
-		params.require(:post).permit(:title, :content, :image)
+		params.require(:post).permit(:title, :content, :image, :club_id)
 	end
 end

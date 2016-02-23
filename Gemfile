@@ -31,11 +31,12 @@ source 'https://rubygems.org'
     gem 'time_ago_in_words', '~> 0.1.1'
     
     gem 'jquery-rails', '~> 4.1'
+    gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
      gem 'paperclip', '~> 4.3', '>= 4.3.5'
      gem 'devise', '~> 3.5', '>= 3.5.6'
      gem 'acts_as_votable', '~> 0.10.0'
      gem 'acts_as_follower', '~> 0.2.1'
-    
+
      
 
      

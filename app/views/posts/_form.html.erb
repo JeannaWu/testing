@@ -1,15 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+body{margin-top: 5%;}
+.row{margin-left: 40%;}
+section#button{margin-left: 20%}
+</style>
+</head>
+
+<body>
  <%= form_for(@post) do |f| %>
- <div class="row">
+ <div class="row" align="left">
 	 <div class="field">
 	 	
-	 	<%= f.label :title %>
-  		<%= f.text_field :title, placeholder: "Title here" %>
+	 	<%= f.label :title %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  		<%= f.text_field :title, :size => '36x10',placeholder: "Title here" %><br><br>
   		<%= f.label :content %>
-   	 	<%= f.text_area :content, placeholder: "Content here" %>
+   	 	<%= f.text_area :content, :size => '36x10',placeholder: "Content here" %><br>
    	 	<%= f.label :image %>
-   	 	<%= f.file_field :image, placeholder: "Image here" %>
+   	 	<%= f.file_field :image, placeholder: "Image here" %><br>
    	 	
  	 </div>
-   <%= f.submit "Post" %>
+   <section id="button">
+   <%= f.submit "Post",class: "btn btn-primary"  %>
+ </section>
 </div>
 <% end %>
+</body>
+</html>

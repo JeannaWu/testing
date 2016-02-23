@@ -2,34 +2,66 @@
 <html>
 
 <style type="text/css">
-div#user_info {background-color:#FFFFFF;height:150px; float: left;}
+div#container{margin-top: 10%;width:95%; overflow:hidden;}
+div#content {background-color:#FFFFFF ;width:70%;float:right;overflow:hidden;}
+div#club {background-color:#F8F8F8 ;overflow:hidden;width:15%;float:left;margin-left: 10%}
+   td{text-align:left;}
+   li{list-style-type: none; }
 </style>
 </head>
 <body>
- 
-     <div id="post">
-         <h1>
+<div id="container">
+    <div id="content">
+        <ul>
+        <li>
+      
+        <table class="zebra" align="left" border="0" width="800">
             <% @posts.each do |post| %> 
-            <p><%= link_to post.title, post%></p>
-			      <%= link_to (image_tag post.image.url(:small)), post%>
-            <div id ="count and size">
-		      	<h2><%= post.comments.count%> Comments</h2> 
-			      <h2><%= post.get_likes.size%>Likes</h2>
-			      <%- end%>
-			      <%= link_to "New Post", new_post_path%>
-          </h1>
+        <tr><font size="3">
+          <td>CLub name</td>
+          </font> 
+        </tr>
+
+         
+
+            <tr>
+
+              <td>
+                   <font size="4"><%= link_to post.title, post%></font> 
+              </td>
           
+            </tr>
+            <tr>
+              <td>
+                <%= link_to (image_tag post.image.url(:small)), post%>
+              </td>
+            </tr>
+            <tr id = "tr_content3">
+              <td id = "user_name"><i class="fa fa-user"></i><%= post.user.name%>&nbsp;&nbsp;<i class="fa fa-thumbs-o-up"> </i><%= post.get_likes.size%>Likes</td>
+              
+            </tr>
+            
+            <% end %>
+        </table>
+    </li>
+  </ul>
+    </div>
   
+    <div id= "club">
+        <% Club.all.each do |club| %> 
+        <li> <%= link_to club.name, clubs_path(club: club.name)%></li>
+        <% end %>
+        <li><%= link_to " More Clubs", clubs_path %></li>
+    </div>
 
- 	<div id = "post">
- 		
- 	</div>
-
-</aside>
 </div>
+     
 </body>
 </html>
 
+
+
+           
 
 
 

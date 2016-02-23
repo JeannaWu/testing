@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 		@user = User.where(:name => params[:name]).first
     @user = User.find(params[:id])
       
-    # @posts = @user.posts.paginate(page: params[:page], per_page: 20)
+    @posts = @user.posts.paginate(page: params[:page], per_page: 20)
        
 	end
   def new
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.where(:name => params[:name]).first
 
     @current_page = params[:page].present? ? params[:page] : 1
-    @topics = @user.topics.page(@current_page).per(20).order('created_at DESC')
+    @posts = @user.posts.page(@current_page).per(20).order('created_at DESC')
 
     @title = "#{@user.name} All Posts"
   

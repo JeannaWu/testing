@@ -7,7 +7,7 @@ div#user_info {background-color:#FFFFFF;height:150px; float: left;}
     padding-right: 1rem;
     padding-bottom: 0.3rem;
     padding-left: 1rem;}
-
+div#row{margin-top: 5%;}
 </style>
 </head>
 <body>
@@ -35,7 +35,7 @@ div#user_info {background-color:#FFFFFF;height:150px; float: left;}
           </section>
      </aside>  
 <aside class="col-md-8">
-  <!--显示当前用户的帖子-->
+  <%= current_user.posts%>
 </aside>
 </div>
 </body>

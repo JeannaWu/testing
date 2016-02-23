@@ -21,13 +21,20 @@
 			<div id="logo">
   				<%= link_to "Tree Hole", root_path %>
 			</div>
-
+      <div id="searchbtn">
+        <%= form_tag posts_path, :method => 'get' do%>
+        <%= text_field_tag :search, params[:search]%>
+        <%= submit_tag "Search"%>
+        <%- end %>
+      </div>
 			<nav>
 				<ul class="nav navbar-nav navbar-right">
           
                <% if user_signed_in? %>
              
             <%= link_to current_user.name,current_user, class: "button" %>
+            <%= link_to "Sign out", destroy_user_session_path, :method => :delete ,class: "button"%>
+
   		     <%= link_to "New Post", new_post_path, class: "button" %>
             <% else %>
              <%= link_to "Sign In", new_user_session_path, class: "button" %>
