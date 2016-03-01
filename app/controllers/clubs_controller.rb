@@ -1,9 +1,11 @@
 class ClubsController < ApplicationController
 	def index
         @club = Club.paginate(page: params[:page], per_page: 20).order(created_at: :desc)
-      end
+  end
+  
 	def show
 		@club = Club.find(params[:id])
+    render 'show'
 	end
 	def destroy
       	Club.find(params[:id]).destroy
@@ -22,13 +24,13 @@ class ClubsController < ApplicationController
 
 
          def follow
-  @club = Club.find(params[:id])
-    current_user.follow(@club)
-     respond_to do |format|
-      format.html { redirect_to @club }
-      format.js
-end
-end
+            @club = Club.find(params[:id])
+            current_user.follow(@club)
+            respond_to do |format|
+            format.html { redirect_to @club }
+            format.js
+            end
+        end
    def unfollow
    @club = Club.find(params[:id])
     current_user.stop_following(@club)

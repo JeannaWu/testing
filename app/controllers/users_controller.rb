@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
+  
 	def show
     
 		@user = User.where(:name => params[:name]).first
@@ -8,6 +9,11 @@ class UsersController < ApplicationController
     @posts = @user.posts.paginate(page: params[:page], per_page: 20)
        
 	end
+  
+
+  def index
+    @users = User.all
+  end
   def new
      @user = User.new
      

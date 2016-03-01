@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+
+<style type="text/css">
+body{margin-top: 15%;}
+</style>
+</head>
+<body>
 <h2>Log in</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -13,3 +21,5 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</body>
+</html>

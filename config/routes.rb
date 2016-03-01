@@ -26,7 +26,12 @@ end
  		get "like", to:"posts#upvote"
  		get "dislike", to:"posts#downvote"
  	end
- 	resources :comments
+ 	resources :comments do
+      member do
+        get "like", to:"comments#upvote"
+        get "dislike", to:"comments#downvote"
+  end
+  end
  end
 
 

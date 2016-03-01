@@ -12,4 +12,12 @@ class CommentsController < ApplicationController
 			render 'new'
 		end
 	end
+	def upvote
+		@comment.upvote_by current_user
+		redirect_to :back
+	end
+	def downvote
+		@comment.downvote_by current_user
+		redirect_to :back
+	end
 end

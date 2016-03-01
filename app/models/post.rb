@@ -3,6 +3,6 @@ class Post < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :club
 	has_many :comments
-	has_attached_file :image, styles: { medium: "550x300#", small: "150x80>" }
+	has_attached_file :image, styles: { medium: "550x300#", small: "350x250#" }
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 end
