@@ -15,6 +15,12 @@
 				<div class = "post_data">
 				<p class = "username" >	
 	   			 	<span><%= link_to @post.user.name, @user%>	</span>		
+	   			 	<% if can? :update, @post %>
+						<%= link_to "Edit", edit_post_path(@post)%>
+					<% end %>
+					<% if can? :destroy, @post %>
+						<%= link_to "Destroy", post_path(@post), method: :delete, data: {confirm: "Are you sure to delete the post?"}%>
+					<%- end %>
 				</p>
         		</div>
         	</br>
@@ -47,7 +53,7 @@
 
 		</div>
 		<div id = "random_post">
-			<h3>Random Posts</h3>
+			Random Posts
 			<div class = "post">
 				<div class = "post_image">
 					<%=link_to (image_tag @random_post.image.url(:small)), post_path(@random_post)%>
@@ -75,23 +81,27 @@
 	</div>
 </div>
 <div id = "comments">
-	
+	<div class = "comment_count">
+		<%=  pluralize(@post.comments.count, "Comment")%>
+	</div>
 	<% @comments.each do |comment| %>
 	<div class = "comment">
 		<div class = "data clearfix">
 		<p class = "username">
-			<span><%= link_to comment.user.name, @user%></span>
-			
+			<span><%= link_to comment.user.name, @user%></span>		
 		</p>
 		</div>
 		<div class = "comment_content">
 		<%= comment.content%>
-	   </div>
-		
-		
+		<% if can? :destroy, @comment %>
+		<%= link_to "Destroy", post_comment_path(comment.post,comment), method: :delete, data: {confirm: "Are you sure to delete the post?"}%>
+		 <% end -%>
+	   </div>			
 	</div>
 	<% end %> 
 	</br>
+	<div class = "comment_form">
 	<p>Reply to the post<p> 
 	<%= render "comments/form" %>
+    </div>
 </div>

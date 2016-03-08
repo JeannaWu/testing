@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
  require 'will_paginate/array'
+ include CanCan::ControllerAdditions
 
 	protect_from_forgery with: :exception
 

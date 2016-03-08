@@ -39,9 +39,10 @@ source 'https://rubygems.org'
 
      gem 'acts_as_follower', '~> 0.2.1'
      gem 'acts_as_list', '~> 0.7.2'
-     gem "cancancan"
+     gem 'cancancan', '~> 1.10'
      gem 'paper_trail'
-
+    gem 'rails_admin', '~> 0.8.1'
+     gem 'role_model', '~> 0.8.2'
      
 
      

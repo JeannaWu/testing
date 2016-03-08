@@ -28,7 +28,7 @@ div#user_info {background-color:#FFFFFF;height:150px; float: left;}
                  <% if user_signed_in? %>
                 <div id="follow_user <%=@user.id%> ">
                 <%= render :partial => "follow_user", :locals => {:user => @user} %>
-                <p><%= link_to"Apply for Professional User", users_professional_user_path,class: "button"%></p>
+                
                 <% end %>
             </div>
           

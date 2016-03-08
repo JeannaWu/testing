@@ -1,6 +1,5 @@
-<div id = "comment_form">
-<%= form_for [@post,@post.comments.build] do |f| %>  
+
+<%= simple_form_for [@post,@post.comments.build] do |f| %>  
   <p><%= f.text_area :content,:size => '68x10'  %> </p>  
   <p><%= f.submit "Post Comment" %> </p>  
 <% end %>  
-</div>

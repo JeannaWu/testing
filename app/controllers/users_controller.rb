@@ -1,32 +1,32 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
-  
+  before_action :admin_user,     only: :destroy
+  before_action :find_user,      only: :destroy
 	def show
     
 		@user = User.where(:name => params[:name]).first
     @user = User.find(params[:id])
-    @professional_user = User.find(params[:id])
     @posts = @user.posts.paginate(page: params[:page], per_page: 20)
        
 	end
   
 
   def index
-    @users = User.all
+
+    @users = User.paginate(page: params[:page])
   end
 
-  def professional_user
-    @professional_user = User.new
-  end
-
+  
 
   def new
      @user = User.new
+     
     
   end
 
   def create
-  @user = User.create( user_params )  
+  @user = User.create(user_params )  
+  
   end
 
 	 def posts
@@ -42,8 +42,14 @@ class UsersController < ApplicationController
   	@user = current_user
     @user.build_account unless @user.account.present?
   end
-
   
+
+     def destroy
+          @user.destroy
+          flash[:success] = "User deleted"
+          redirect_to users_url
+        
+       end
 
     def update_avatar
     @user = current_user
@@ -105,9 +111,20 @@ end
   
 
 	private
+  def find_user
+    @user = User.find(params[:id])
+    
+  end
+  def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
   
-	def user_params
+	def professional_user_params
       params.require(:user).permit(:name, :email, :password, :profession, :introduction,
+                                   :password_confirmation, :gender,:avatar)
+    end
+    def user_params
+      params.require(:user).permit(:name, :email, :password, 
                                    :password_confirmation, :gender,:avatar)
     end
 end

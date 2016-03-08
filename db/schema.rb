@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308000141) do
+ActiveRecord::Schema.define(version: 20160308190746) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -26,9 +26,6 @@ ActiveRecord::Schema.define(version: 20160308000141) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
-
-  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "follows", force: :cascade do |t|
     t.integer  "followable_id",   limit: 4,                   null: false
@@ -91,6 +88,8 @@ ActiveRecord::Schema.define(version: 20160308000141) do
     t.boolean  "profession",             limit: 1
     t.string   "career",                 limit: 255
     t.text     "introduction",           limit: 65535
+    t.boolean  "admin",                  limit: 1
+    t.integer  "roles_mask",             limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -122,6 +121,4 @@ ActiveRecord::Schema.define(version: 20160308000141) do
   add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
   add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
-  add_foreign_key "comments", "posts"
-  add_foreign_key "comments", "users"
 end
