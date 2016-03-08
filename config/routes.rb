@@ -1,24 +1,19 @@
 Rails.application.routes.draw do
-  resources :search_suggestions
   devise_for :users
   resources :users do
     member do
     get :follow
     get :unfollow
     get :following, :followers
-    get :joining
+    
 end
 end
 
 
 
-  resources :clubs do
-    member do
-    get :follow
-    get :unfollow
 
-end
-  end
+  resources :categories 
+   
   
 
  resources :posts do
@@ -39,6 +34,7 @@ end
   root 'posts#index'
   get 'static_pages/home'
   get 'static_pages/help'
+  get 'users/professional_user'
   resources :follows
   
 end

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     
 		@user = User.where(:name => params[:name]).first
     @user = User.find(params[:id])
-      
+    @professional_user = User.find(params[:id])
     @posts = @user.posts.paginate(page: params[:page], per_page: 20)
        
 	end
@@ -14,12 +14,19 @@ class UsersController < ApplicationController
   def index
     @users = User.all
   end
+
+  def professional_user
+    @professional_user = User.new
+  end
+
+
   def new
      @user = User.new
-     
+    
   end
+
   def create
-  @user = User.create( user_params )
+  @user = User.create( user_params )  
   end
 
 	 def posts
@@ -98,8 +105,9 @@ end
   
 
 	private
+  
 	def user_params
-      params.require(:user).permit(:name, :email, :password, 
+      params.require(:user).permit(:name, :email, :password, :profession, :introduction,
                                    :password_confirmation, :gender,:avatar)
     end
 end

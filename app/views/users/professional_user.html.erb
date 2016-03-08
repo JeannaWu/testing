@@ -1,0 +1,28 @@
+<% provide(:title, 'Profession User') %>
+<%= simple_form_for(@professionalUser,{ class: 'form-horizontal'}) do |f| %>
+ <div class="form-group">
+        <%= f.label :name, class: 'col-sm-2 control-label'  %>
+        <div class="col-sm-6">
+            <%= f.text_field :name, autofocus: true, class: 'form-control'  %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.label :email, class: 'col-sm-2 control-label'  %>
+        <div class="col-sm-6">
+            <%= f.email_field :email, class: 'form-control'  %>
+        </div>
+    </div>
+<div class="form-group">
+        <%= f.label :career, class: 'col-sm-2 control-label'  %>
+        <div class="col-sm-6">
+            <%= f.career_field :career, class: 'form-control'  %>
+        </div>
+    </div>
+<div class="form-group">
+        <%= f.label :introduction, class: 'col-sm-2 control-label'  %>
+        <div class="col-sm-6">
+            <%= f.introduction_field :introduction, class: 'form-control'  %>
+        </div>
+    </div>
+
+<% end %>

@@ -35,7 +35,12 @@ source 'https://rubygems.org'
      gem 'paperclip', '~> 4.3', '>= 4.3.5'
      gem 'devise', '~> 3.5', '>= 3.5.6'
      gem 'acts_as_votable', '~> 0.10.0'
+          gem 'haml', '~> 4.0.5'
+
      gem 'acts_as_follower', '~> 0.2.1'
+     gem 'acts_as_list', '~> 0.7.2'
+     gem "cancancan"
+     gem 'paper_trail'
 
      
 

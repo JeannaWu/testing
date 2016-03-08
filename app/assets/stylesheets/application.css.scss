@@ -61,10 +61,13 @@ header{
     }
     #searchbtn{
 	  margin-top: 14px;
-	  margin-left: 220px;
+	  margin-left: 30%;
 }
    
-
+.nav-default {
+	background: #333333;
+	color: #FFFFFF;
+}
 nav {
 	float: right;
 	margin-bottom: 10px;
@@ -78,6 +81,21 @@ nav {
 		}
 	}
 	}
+	.tab-bar{
+	webkit-backface-visibility: hidden;
+    background: #333333;
+    color: #FFFFFF;
+    height: 2.8125rem;
+    line-height: 2.8125rem;
+    position: relative;
+    [data-magellan-expedition-clone] {
+    background: #FFFFFF;
+    z-index: 50;
+    min-width: 100%;
+    padding: 10px;
+}
+	}
+
 }
 @import 'post.css.scss';
 

@@ -2,17 +2,19 @@
 <html>
 <head>
 <style type="text/css">
-body{margin-top: 5%;}
+
 .row{margin-left: 40%;}
 section#button{margin-left: 20%}
 </style>
 </head>
 
 <body>
- <%= form_for(@post) do |f| %>
+ <%= simple_form_for(@post,{ class: 'form-horizontal'}) do |f| %>
  <div class="row" align="left">
 	 <div class="field">
-	 	
+    <%= f.label :category %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	 	<%= f.collection_select :category_id, Category.all, :id, :name, {promt: "Choose a category" }, input_html: { class: "dropdown-toggle" } %></br>
+
 	 	<%= f.label :title %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   		<%= f.text_field :title, :size => '36x10',placeholder: "Title here" %><br><br>
   		<%= f.label :content %>

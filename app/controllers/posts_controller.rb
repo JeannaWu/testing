@@ -2,15 +2,12 @@
 	before_action :find_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 	before_action :authenticate_user!, except: [:index, :show]
 	def index
-		
+		@category = Category.all
+		if params[:category].blank?
 			@posts = Post.where(["title LIKE ?","%#{params[:search]}%"])
-		   
-		
-		if params[:club].blank?
-		    @posts = Post.paginate(page: params[:page], per_page: 30).order("Created_at desc")
 		else
-			club_id = Club.find_by(name: params[:club]).id
-			@posts = Post.where(club_id: @club_id).order("created_at DESC")
+			@category_id = Category.find_by(name: params[:category]).id
+			@posts = Post.where(category_id: @category_id).order("created_at DESC")
 		end
 
 	end
@@ -18,7 +15,7 @@
 	def show
 		@post = Post.find(params[:id])
 		@user = @post.user
-		@club = @post.club
+		@category = @post.category
 		@comments = Comment.where(post_id: @post)
 		@random_post = Post.where.not(id: @post).order("RAND()").first
 	end
@@ -54,10 +51,12 @@
 		redirect_to root_path
 	end
 	def upvote
+		
 		@post.upvote_by current_user
 		redirect_to :back
 	end
 	def downvote
+		
 		@post.downvote_by current_user
 		redirect_to :back
 	end
@@ -68,6 +67,6 @@
 	end
 
 	def post_params
-		params.require(:post).permit(:title, :content, :image, :club_id)
+		params.require(:post).permit(:title, :content, :image, :category_id)
 	end
 end
