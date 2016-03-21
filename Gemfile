@@ -26,7 +26,7 @@ source 'https://rubygems.org'
     gem 'bcrypt',   '3.1.7'
     gem 'faker',                '1.4.2'
     gem 'simple_form', '~> 3.2'
-    gem 'will_paginate',           '3.0.7'
+    gem "will_paginate", ">=3.0.pre4"
     gem 'bootstrap-will_paginate', '0.0.10'
     gem 'time_ago_in_words', '~> 0.1.1'
     
@@ -40,10 +40,11 @@ source 'https://rubygems.org'
      gem 'acts_as_follower', '~> 0.2.1'
      gem 'acts_as_list', '~> 0.7.2'
      gem 'cancancan', '~> 1.10'
-     gem 'paper_trail'
+     gem 'paper_trail', '~> 4.1'
+     gem 'kaminari', '~> 0.16.3'
     gem 'rails_admin', '~> 0.8.1'
      gem 'role_model', '~> 0.8.2'
-     
+     gem 'state_machines'
 
      
     
