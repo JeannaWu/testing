@@ -16,7 +16,10 @@ source 'https://rubygems.org'
       gem 'spring',      '1.1.3'
     end
     group :development do
-        
+        gem 'capistrano', '~> 3.4', '>= 3.4.1'
+        gem 'capistrano-bundler', '~> 1.1', '>= 1.1.4'
+        gem 'capistrano-rails', '~> 1.1', '>= 1.1.6'
+        gem 'capistrano-rvm', '~> 0.1.2'
     end
 
     group :production do
